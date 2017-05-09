@@ -110,13 +110,27 @@ class LaserWeaponArmory(Scene):
         print "wrong 10 times then the lock closes forever and you can't"
         print "get the bomb.  The code is 3 digits."
         code = "%d%d%d" % (randint(1,9), randint(1,9), randint(1,9))
+        # print code # cheat code
         guess = raw_input("[keypad]> ")
         guesses = 1
 
         while guess != code and guesses < 10:
             print "BZZZZEEEDDD!"
+            if guesses >= 2 and answer == "y":
+                print "You failed to guess the password %d times. Do you need any help?[y/n]" % guesses
+                answer = raw_input("> ")
+                if answer == "y":
+                    print "The first 2 digits of the code are %s" % code[:2]
+                elif answer == "n":
+                    print "Are you crazy? How are you going to find the code?"
+                else:
+                    print "Wrong answer mate!"
+            else:
+                pass
+
             guesses += 1
             guess = raw_input("[keypad]> ")
+
 
         if guess == code:
             print "The container clicks open and the seal breaks, letting gas out."
@@ -176,6 +190,12 @@ class EscapePod(Scene):
         print "do you take?"
 
         good_pod = randint(1,5)
+        print "Do you want any help?[y/n]"
+        answer = raw_input("> ")
+        if answer == "y":
+            print "The safe pod is the #%d. You cheater!" % good_pod
+        else:
+            print "Seems like you are going to lose!\nEVIL LAUGH"
         guess = raw_input("[pod #]> ")
 
         if int(guess) != good_pod:
