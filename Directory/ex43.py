@@ -113,9 +113,11 @@ class LaserWeaponArmory(Scene):
         # print code # cheat code
         guess = raw_input("[keypad]> ")
         guesses = 1
+        answer = "y"
 
         while guess != code and guesses < 10:
             print "BZZZZEEEDDD!"
+
             if guesses >= 2 and answer == "y":
                 print "You failed to guess the password %d times. Do you need any help?[y/n]" % guesses
                 answer = raw_input("> ")
